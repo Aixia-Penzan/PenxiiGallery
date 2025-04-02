@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Playwrite NG Modern, sans-serif;
+}
+
+body {
+    text-align: center;
+    background-image: url(PenxiiCollection/DM.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 20px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.image-card {
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.356);
+    width: 280px;
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.image-card:hover {
+    transform: scale(1.09);
+    cursor: pointer;
+}
+
+.image-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.image-card a {
+    flex-grow: 1;
+    display: flex;
+}
+
+.image-title {
+    padding: 10px;
+    font-size: 0.9em;
+    color: #333;
+    /* Fixed height for all titles */
+    min-height: 40px;
+    /* Center text vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .gallery {
+        flex: 50%;
+        max-width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .gallery {
+        flex: 100%;
+        max-width: 100%;
+    }
+}
+
+h1 {
+    color: palevioletred;
+}
+
+.dark-mode {
+    background-image: url(PenxiiCollection/NM.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+button {
+    border-radius: 5px;
+}
+
+footer a {
+    text-decoration: none;
+}

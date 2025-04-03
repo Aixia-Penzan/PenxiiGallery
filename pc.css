@@ -83,7 +83,7 @@ h1 {
 }
 
 .dark-mode {
-    background-image: url(PenxiiCollection/NM.jpg);
+    background-image: url(PenxiiCollection/NM1.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -95,4 +95,9 @@ button {
 
 footer a {
     text-decoration: none;
+}
+footer
+{
+    color: rgb(95, 49, 221);
+    font-weight: bold;
 }

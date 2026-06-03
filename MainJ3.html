@@ -1,0 +1,512 @@
+
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, noimageindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Penxii Collection — Original Digital Art | No AI Training</title>
+
+  <!-- Google Fonts: Elegant serif + clean sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ────────────── EXTRA PROTECTION & POP TWEAKS ────────────── */
+    /* immediate reset overrides */
+    * {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* stronger anti-selection & image guard */
+    body {
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-touch-callout: none;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      -webkit-user-select: none;
+      user-select: none;
+      pointer-events: none;        /* img itself can't be right-clicked; shield div handles interactions */
+      draggable: false;
+    }
+
+    /* extra cover for print / save-as attempts */
+    @media print {
+      body {
+        display: none;
+      }
+    }
+
+    /* ultra thin watermark suggestion (ethical deterrent) */
+    .gallery::after {
+      display: none;
+    }
+  </style>
+
+  <link rel="stylesheet" href="pc.css">
+</head>
+<body oncontextmenu="return false;">
+
+  <!-- *****************************
+       ✦ TOP AUTHOR SECTION (moved from hero → topmost)
+       Includes Artist, Page by, and NO AI Art Training banner
+  ***************************** -->
+  <div class="top-author-bar">
+    <div class="top-author-inner">
+      <div class="author-cluster">
+        <div class="author-item">
+          <span class="author-label">Artist</span>
+          <span class="author-name">Penxii</span>
+          <a href="https://x.com/Penxii_" target="_blank" rel="noopener noreferrer" class="author-link">↗ X / Twitter</a>
+        </div>
+        <div class="author-item">
+          <span class="author-label">Page by</span>
+          <span class="author-name">Aizan</span>
+        </div>
+      </div>
+      <div class="no-ai-badge-top">
+        <span class="badge-icon">⊘</span>
+        <div class="badge-text">
+          <strong>NO AI ART TRAINING</strong>
+          <span>All artwork © Penxii. Strictly not licensed for AI training, web scraping, or reproduction.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Navigation ── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="site-logo" href="#">Penxii</a>
+      <nav class="header-nav">
+        <span>Digital Illustration</span>
+        <span>Character Art</span>
+        <button class="theme-toggle" id="darkModeToggle" aria-label="Dark/Light mode">◐&ensp;Light / Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── Hero Section (Author info moved to top bar) ── -->
+  <section class="page-hero">
+    <!-- meta-row removed — now at top -->
+    <p class="page-hero__eyebrow">Collection — Van Gogh Museum Aesthetic</p>
+    <h1 class="page-hero__title">Penxii <em>Gallery</em></h1>
+    <p class="page-hero__desc">Original digital illustration &amp; character art — a personal archive. No AI usage. All rights reserved.</p>
+    <hr class="page-hero__rule">
+  </section>
+
+  <!-- ── Gallery Label ── -->
+  <div class="gallery-header">
+    <span class="gallery-header__label">All Works</span>
+    <span class="gallery-header__count">52 pieces</span>
+  </div>
+
+  <!-- ── Gallery Grid ── -->
+  <main class="gallery" id="galleryGrid">
+    <!-- All artwork items will be populated exactly as original with added protection -->
+    <!-- keeping original 52 card structure, but added draggable=false via script later -->
+    <div class="image-card">
+      <a href="PenxiiCollection/Us.jpg">
+        <img src="PenxiiCollection/Us.jpg" alt="Penxii and her Husband">
+      </a>
+      <div class="image-title">Penxii and Aizan</div>
+      <div class="image-caption">Penxii and Aizan</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/MeltGIf.gif">
+        <img src="PenxiiCollection/MeltGIf.gif" alt="Melty">
+      </a>
+      <div class="image-title">Melt</div>
+      <div class="image-caption">Melt</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/SerenityApple.jpg">
+        <img src="PenxiiCollection/SerenityApple.jpg" alt="Serenity Apple">
+      </a>
+      <div class="image-title">Serenity and Poisonous Apple</div>
+      <div class="image-caption">Serenity and Poisonous Apple</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Aoko.jpg">
+        <img src="PenxiiCollection/Aoko.jpg" alt="Aoko">
+      </a>
+      <div class="image-title">Aoko</div>
+      <div class="image-caption">Aoko</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Luvia.jpg">
+        <img src="PenxiiCollection/Luvia.jpg" alt="Luvia">
+      </a>
+      <div class="image-title">Astraea</div>
+      <div class="image-caption">Astraea</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/A number of my simple happiness are fireflies filling the darkness in my mindscape..jpg">
+        <img src="PenxiiCollection/A number of my simple happiness are fireflies filling the darkness in my mindscape..jpg" alt="Fireflies in my mindscape">
+      </a>
+      <div class="image-title">Fireflies filling the darkness in my mindscape</div>
+      <div class="image-caption">Fireflies in my mindscape</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/A piece of Shinjuku memories.jpg">
+        <img src="PenxiiCollection/A piece of Shinjuku memories.jpg" alt="A piece of Shinjuku memories">
+      </a>
+      <div class="image-title">A piece of Shinjuku memories</div>
+      <div class="image-caption">Shinjuku memories</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Alicepengu.jpg">
+        <img src="PenxiiCollection/Alicepengu.jpg" alt="Alicepengu">
+      </a>
+      <div class="image-title">Alicepengu</div>
+      <div class="image-caption">Alicepengu</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Aliceplay.jpg">
+        <img src="PenxiiCollection/Aliceplay.jpg" alt="Alice Drums">
+      </a>
+      <div class="image-title">Alice Drums</div>
+      <div class="image-caption">Alice Drums</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Gudako.png">
+        <img src="PenxiiCollection/Gudako.png" alt="Gudako">
+      </a>
+      <div class="image-title">Gudako tea sipping and thinking about her choices</div>
+      <div class="image-caption">Gudako — Tea &amp; Reflection</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Arc.jpg">
+        <img src="PenxiiCollection/Arc.jpg" alt="Arc">
+      </a>
+      <div class="image-title">Arc</div>
+      <div class="image-caption">Arc</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/BillyTheKid.jpg">
+        <img src="PenxiiCollection/BillyTheKid.jpg" alt="BillyTheKid">
+      </a>
+      <div class="image-title">Billy the Kid</div>
+      <div class="image-caption">Billy the Kid</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Cielbro check.jpg">
+        <img src="PenxiiCollection/Cielbro check.jpg" alt="Ciel">
+      </a>
+      <div class="image-title">Ciel</div>
+      <div class="image-caption">Ciel</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Guda and Gang.jpg">
+        <img src="PenxiiCollection/Guda and Gang.jpg" alt="Gudako and her captured memories">
+      </a>
+      <div class="image-title">Gudako and her captured memories</div>
+      <div class="image-caption">Gudako and her captured memories</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Gudamelt.jpg">
+        <img src="PenxiiCollection/Gudamelt.jpg" alt="Gudamelt">
+      </a>
+      <div class="image-title">Gudamelt</div>
+      <div class="image-caption">Gudamelt</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Iなんです Kanade.jpg">
+        <img src="PenxiiCollection/Iなんです Kanade.jpg" alt="Iなんです Kanade">
+      </a>
+      <div class="image-title">I なんです Kanade</div>
+      <div class="image-caption">I なんです Kanade</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Kanade Pixel Art.png">
+        <img src="PenxiiCollection/Kanade Pixel Art.png" alt="Kanade Pixel Art">
+      </a>
+      <div class="image-title">Kanade [Pixel Art]</div>
+      <div class="image-caption">Kanade — Pixel Art</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/knmf but mfy is a squid balloon.jpg">
+        <img src="PenxiiCollection/knmf but mfy is a squid balloon.jpg" alt="knmf but mfy is a squid balloon">
+      </a>
+      <div class="image-title">knmf but mfy is a squid balloon</div>
+      <div class="image-caption">knmf — squid balloon</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Kohaku.jpg">
+        <img src="PenxiiCollection/Kohaku.jpg" alt="Kohaku">
+      </a>
+      <div class="image-title">Kohaku</div>
+      <div class="image-caption">Kohaku</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Koishi Komeiji.jpg">
+        <img src="PenxiiCollection/Koishi Komeiji.jpg" alt="Koishi Komeiji">
+      </a>
+      <div class="image-title">Koishi Komeiji</div>
+      <div class="image-caption">Koishi Komeiji</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Len1.jpg">
+        <img src="PenxiiCollection/Len1.jpg" alt="Len">
+      </a>
+      <div class="image-title">Len</div>
+      <div class="image-caption">Len</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Lily.jpg">
+        <img src="PenxiiCollection/Lily.jpg" alt="Lily">
+      </a>
+      <div class="image-title">Lily</div>
+      <div class="image-caption">Lily</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Long lost Innocence.jpg">
+        <img src="PenxiiCollection/Long lost Innocence.jpg" alt="Long lost Innocence">
+      </a>
+      <div class="image-title">Long lost Innocence</div>
+      <div class="image-caption">Long lost Innocence</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Lost Captain.jpg">
+        <img src="PenxiiCollection/Lost Captain.jpg" alt="Lost Captain">
+      </a>
+      <div class="image-title">Lost Captain</div>
+      <div class="image-caption">Lost Captain</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Miku day.jpg">
+        <img src="PenxiiCollection/Miku day.jpg" alt="Miku Day">
+      </a>
+      <div class="image-title">Miku Day</div>
+      <div class="image-caption">Miku Day</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Maidea.jpg">
+        <img src="PenxiiCollection/Maidea.jpg" alt="Maidea">
+      </a>
+      <div class="image-title">Maidea</div>
+      <div class="image-caption">Maidea</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Merem Solomon from Tsukihime.jpg">
+        <img src="PenxiiCollection/Merem Solomon from Tsukihime.jpg" alt="Merem Solomon from Tsukihime">
+      </a>
+      <div class="image-title">Merem Solomon — Tsukihime</div>
+      <div class="image-caption">Merem Solomon — Tsukihime</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/どうか安寧な記憶を.jpg">
+        <img src="PenxiiCollection/どうか安寧な記憶を.jpg" alt="どうか安寧な記憶を">
+      </a>
+      <div class="image-title">どうか安寧な記憶を</div>
+      <div class="image-caption">どうか安寧な記憶を</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/バグ.jpg">
+        <img src="PenxiiCollection/バグ.jpg" alt="バグ">
+      </a>
+      <div class="image-title">バグ</div>
+      <div class="image-caption">バグ</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/SonoG and Gang.jpg">
+        <img src="PenxiiCollection/SonoG and Gang.jpg" alt="SonoG and Gang">
+      </a>
+      <div class="image-title">SonoG and Gang</div>
+      <div class="image-caption">SonoG and Gang</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Van Gogh.jpg">
+        <img src="PenxiiCollection/Van Gogh.jpg" alt="Van Gogh">
+      </a>
+      <div class="image-title">Van Gogh</div>
+      <div class="image-caption">Van Gogh</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Something something I drew in ms paint before for my late friend...jpg">
+        <img src="PenxiiCollection/Something something I drew in ms paint before for my late friend...jpg" alt="For a late friend">
+      </a>
+      <div class="image-title">Something I drew in ms paint before for my late friend</div>
+      <div class="image-caption">For a late friend</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Smolberon.jpg">
+        <img src="PenxiiCollection/Smolberon.jpg" alt="Smolberon">
+      </a>
+      <div class="image-title">Smolberon</div>
+      <div class="image-caption">Smolberon</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/SionBunny.jpg">
+        <img src="PenxiiCollection/SionBunny.jpg" alt="Sion Bunny">
+      </a>
+      <div class="image-title">Sion Bunny</div>
+      <div class="image-caption">Sion Bunny</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Sf.jpg">
+        <img src="PenxiiCollection/Sf.jpg" alt="Sunflowers">
+      </a>
+      <div class="image-title">Sunflowers</div>
+      <div class="image-caption">Sunflowers</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/AliceNewYears.jpg">
+        <img src="PenxiiCollection/AliceNewYears.jpg" alt="Alice New Years">
+      </a>
+      <div class="image-title">Alice New Years</div>
+      <div class="image-caption">Alice New Years</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/AliceUnfzed.jpg">
+        <img src="PenxiiCollection/AliceUnfzed.jpg" alt="Alice Unfazed">
+      </a>
+      <div class="image-title">Alice In Pengu</div>
+      <div class="image-caption">Alice In Pengu</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/CharlieValentine.jpg">
+        <img src="PenxiiCollection/CharlieValentine.jpg" alt="Charlie Valentine">
+      </a>
+      <div class="image-title">Charlie Valentine</div>
+      <div class="image-caption">Charlie Valentine</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/KohakuBroom.jpg">
+        <img src="PenxiiCollection/KohakuBroom.jpg" alt="Kohaku Broom">
+      </a>
+      <div class="image-title">Kohaku Broomfies</div>
+      <div class="image-caption">Kohaku Broomfies</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Laterns.jpg">
+        <img src="PenxiiCollection/Laterns.jpg" alt="Lanterns">
+      </a>
+      <div class="image-title">Lanterns</div>
+      <div class="image-caption">Lanterns</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Len2sides.png">
+        <img src="PenxiiCollection/Len2sides.png" alt="Len 2 Sides">
+      </a>
+      <div class="image-title">2 Sides</div>
+      <div class="image-caption">2 Sides</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Mikudisturbance.png">
+        <img src="PenxiiCollection/Mikudisturbance.png" alt="Miku Disturbance">
+      </a>
+      <div class="image-title">Miku Disturbance</div>
+      <div class="image-caption">Miku Disturbance</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Misodea.jpg">
+        <img src="PenxiiCollection/Misodea.jpg" alt="Misodea">
+      </a>
+      <div class="image-title">Misodea</div>
+      <div class="image-caption">Misodea</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/NemoCapitan.jpg">
+        <img src="PenxiiCollection/NemoCapitan.jpg" alt="Nemo Captain">
+      </a>
+      <div class="image-title">Nemo Capitain</div>
+      <div class="image-caption">Nemo Capitain</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/NemoOnBall.jpg">
+        <img src="PenxiiCollection/NemoOnBall.jpg" alt="Nemo On Ball">
+      </a>
+      <div class="image-title">Nemo On Ball</div>
+      <div class="image-caption">Nemo On Ball</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Noah.jpg">
+        <img src="PenxiiCollection/Noah.jpg" alt="Noah">
+      </a>
+      <div class="image-title">Noah</div>
+      <div class="image-caption">Noah</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Obrella.jpg">
+        <img src="PenxiiCollection/Obrella.jpg" alt="Obrella">
+      </a>
+      <div class="image-title">Obrella</div>
+      <div class="image-caption">Obrella</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/YakudoTrio.jpg">
+        <img src="PenxiiCollection/YakudoTrio.jpg" alt="Yakudo Trio">
+      </a>
+      <div class="image-title">Yakudo Trio</div>
+      <div class="image-caption">Yakudo Trio</div>
+    </div>
+    <div class="image-card">
+      <a href="PenxiiCollection/Penxii.jpg">
+        <img src="PenxiiCollection/Penxii.jpg" alt="Herself Falling">
+      </a>
+      <div class="image-title">Herself Falling</div>
+      <div class="image-caption">Herself Falling</div>
+    </div>
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">Penxii · Eternal Sketchbook</div>
+      <div class="footer-meta">
+        © 2025 Penxii — All Rights Reserved. No AI training, scraping or reproduction.<br>
+        <a href="https://x.com/Penxii_" target="_blank" rel="noopener noreferrer">↗ Follow on X (Twitter)</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // ==========  EXTREME PROTECTION MEASURES ==========
+      // 1. Block all contextmenu on document (right-click any area)
+      document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+      });
+      
+      // 2. Disable dragstart globally
+      document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG' || e.target.closest('.image-card')) {
+          e.preventDefault();
+          return false;
+        }
+      });
+      
+      // 3. Block copy, cut, save hotkeys
+      document.addEventListener('copy', (e) => e.preventDefault());
+      document.addEventListener('cut', (e) => e.preventDefault());
+      document.addEventListener('keydown', (e) => {
+        // Block Ctrl+S / Cmd+S, Ctrl+U, Ctrl+Shift+I, F12, Ctrl+Shift+C, Ctrl+P (print)
+        if (e.ctrlKey || e.metaKey) {
+          if (['s', 'u', 'p', 'c', 'x'].includes(e.key.toLowerCase())) {
+            e.preventDefault();
+            return false;
+          }
+        }
+        // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (devtools)
+        if (e.key === 'F12' || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+            (e.ctrlKey && e.key === 'u')) {
+          e.preventDefault();
+          return false;
+        }
+        // disable print screen detection cannot block natively, but added.
+      });
+      
+      // 4. Disable image selection & long-press menu on touch devices
+      document.querySelectorAll('i

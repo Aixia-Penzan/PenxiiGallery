@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Penxii Collection – a hand‑drawn art gallery by Penxii and Aizan">
+    <meta name="theme-color" content="#f5f0eb">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Penxii Collection Gallery">
+    <meta property="og:description" content="A curated collection of original artwork by Penxii.">
+    <meta property="og:image" content="PenxiiCollection/Us.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+NG+Modern:wght@100..400&display=swap" rel="stylesheet">
+
+    <title>Penxii Collection Gallery</title>
+
+    <style>
+        /* ===== BASE & YOUR STYLE (enhanced) ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playwrite NG Modern', cursive, sans-serif;
+        }
+
+        :root {
+            --card-bg: #ffffff;
+            --card-text: #2e2a28;
+            --title-color: #333;
+            --h1-color: palevioletred;
+            --footer-color: rgb(95, 49, 221);
+            --button-bg: #ffffff;
+            --button-border: #ccc;
+            --input-bg: #ffffff;
+            --input-border: #d0c8be;
+            --shadow-light: 0 4px 15px rgba(0,0,0,0.08);
+            --card-radius: 14px;
+            --accent: #c44569;
+        }
+
+        body {
+            text-align: center;
+            background-image: url(PenxiiCollection/DayM.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 20px;
+            transition: background-image 0.3s ease, color 0.3s ease;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        body.dark-mode {
+            background-image: url(PenxiiCollection/NightM.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        body.dark-mode .image-card {
+            background: #2a2a35;
+            box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+            border: 1px solid #3e3e4c;
+        }
+        body.dark-mode .image-title {
+            color: #e0d7c6;
+        }
+        body.dark-mode h1 {
+            color: #ffb7a0;
+        }
+        body.dark-mode footer {
+            color: #b4a7ff;
+        }
+        body.dark-mode button,
+        body.dark-mode input,
+        body.dark-mode select {
+            background: #2c2c3a;
+            color: #f0e9d8;
+            border-color: #555;
+        }
+
+        h1 {
+            color: var(--h1-color);
+            font-size: clamp(2.2rem, 7vw, 3.8rem);
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        /* ===== TOOLBAR ===== */
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1.8rem;
+            padding: 0 10px;
+        }
+        .search-box,
+        .sort-select,
+        .tool-btn {
+            padding: 10px 16px;
+            font-size: 0.9rem;
+            border: 1px solid var(--input-border);
+            border-radius: 12px;
+            background: var(--input-bg);
+            color: #333;
+            outline: none;
+            transition: all 0.2s;
+            font-family: 'Playwrite NG Modern', cursive, sans-serif;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            cursor: pointer;
+        }
+        .search-box {
+            width: 220px;
+            max-width: 90vw;
+        }
+        .search-box:focus,
+        .sort-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(196,69,105,0.2);
+        }
+
+        .tool-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--button-bg);
+            border: 1px solid var(--button-border);
+            transition: 0.2s;
+            font-weight: 500;
+        }
+        .tool-btn:hover {
+            background: #f5ece3;
+            transform: translateY(-1px);
+        }
+        body.dark-mode .tool-btn:hover {
+            background: #3d3d50;
+        }
+
+        .theme-toggle-btn {
+            background: var(--button-bg);
+            border: 1px solid var(--button-border);
+            border-radius: 12px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            line-height: 1;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100;
+        }
+        .theme-toggle-btn:hover {
+            background: #f0e6dd;
+            transform: translateY(-2px);
+        }
+        body.dark-mode .theme-toggle-btn:hover {
+            background: #3d3d50;
+        }
+
+        /* Image counter */
+        .counter {
+            font-size: 0.9rem;
+            color: #555;
+            margin: 0 0 15px;
+            background: rgba(255,255,255,0.8);
+            display: inline-block;
+            padding: 5px 18px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        body.dark-mode .counter {
+            background: rgba(40,40,55,0.8);
+            color: #ccc;
+            border-color: #555;
+        }
+
+        /* ===== GALLERY ===== */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            padding: 10px 10px 30px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        /* Card reveal animation */
+        .image-card {
+            background-color: var(--card-bg);
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            width: 260px;
+            transition: transform 0.25s ease, box-shadow 0.3s, opacity 0.6s ease, transform 0.6s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.04);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardReveal 0.6s ease forwards;
+        }
+        @keyframes cardReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Staggered delays applied via JS */
+
+        .image-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 35px rgba(0,0,0,0.15);
+            animation: none; /* override animation on hover to avoid reset */
+        }
+
+        .image-card a {
+            display: block;
+            overflow: hidden;
+            line-height: 0;
+            background: #f3efe9;
+            position: relative;
+        }
+        .image-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+            pointer-events: none;
+        }
+        .image-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-title {
+            padding: 12px 10px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--title-color);
+            min-height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.3px;
+            word-break: break-word;
+            position: relative;
+        }
+
+        /* Like heart */
+        .like-btn {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: transform 0.2s;
+            z-index: 5;
+            color: #aaa;
+            line-height: 1;
+            backdrop-filter: blur(2px);
+        }
+        .like-btn.liked {
+            color: #e74c3c;
+            transform: scale(1.2);
+        }
+        .like-btn:hover {
+            transform: scale(1.3);
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.92);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 92vw;
+            max-height: 80vh;
+            object-fit: contain;
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+            user-select: none;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.15);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 20;
+        }
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .lightbox-title {
+            color: white;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+            z-index: 20;
+        }
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.35);
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        .lightbox-share {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: 0.2s;
+        }
+        .lightbox-share:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* Scroll top */
+        .scroll-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 14px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.4rem;
+            color: #333;
+            box-shadow: 0 5px 18px rgba(0,0,0,0.15);
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top:hover {
+            background: #f5f0eb;
+        }
+        body.dark-mode .scroll-top {
+            background: #2a2a35;
+            color: #e0d7c6;
+            border-color: #555;
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+        }
+
+        /* Responsive */
+        @media (max-width: 800px) {
+            .gallery {
+                justify-content: space-evenly;
+            }
+            .image-card {
+                width: 45%;
+                max-width: 260px;
+            }
+        }
+        @media (max-width: 600px) {
+            .image-card {
+                width: 90%;
+                max-width: 300px;
+            }
+            .toolbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme toggle -->
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="Switch night/day mode" title="Toggle mode">🌓</button>
+
+    <h1>✦ Penxii Gallery ✦</h1>
+
+    <!-- Toolbar with search, sort, and fun buttons -->
+    <div class="toolbar">
+        <input type="text" class="search-box" id="searchInput" placeholder="Search artwork..." autocomplete="off">
+        <select class="sort-select" id="sortSelect">
+            <option value="default">Sort: Default</option>
+            <option value="az">A → Z</option>
+            <option value="za">Z → A</option>
+        </select>
+        <button class="tool-btn" id="randomBtn" title="Surprise me!">🎲 Random</button>
+        <button class="tool-btn" id="toggleFavsBtn" title="Show only liked">❤️ Liked</button>
+    </div>
+
+    <div class="counter" id="counter">Showing 0 of 0</div>
+
+    <!-- GALLERY (identical image set) -->
+    <div class="gallery" id="gallery">
+        <!-- All cards with data-title and original index -->
+        <div class="image-card" data-title="Penxii and Aizan">
+            <a href="PenxiiCollection/Us.jpg"><img src="PenxiiCollection/Us.jpg" alt="Penxii and Aizan" loading="lazy" decoding="async"></a>
+            <div class="image-title">Penxii and Aizan <span class="like-btn" data-id="1">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Melt">
+            <a href="PenxiiCollection/MeltGIf.gif"><img src="PenxiiCollection/MeltGIf.gif" alt="Melt" loading="lazy" decoding="async"></a>
+            <div class="image-title">Melt <span class="like-btn" data-id="2">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Serenity and Poisonous Apple">
+            <a href="PenxiiCollection/SerenityApple.jpg"><img src="PenxiiCollection/SerenityApple.jpg" alt="Serenity and Poisonous Apple" loading="lazy" decoding="async"></a>
+            <div class="image-title">Serenity and Poisonous Apple <span class="like-btn" data-id="3">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Aoko">
+            <a href="PenxiiCollection/Aoko.jpg"><img src="PenxiiCollection/Aoko.jpg" alt="Aoko" loading="lazy" decoding="async"></a>
+            <div class="image-title">Aoko <span class="like-btn" data-id="4">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Astraea">
+            <a href="PenxiiCollection/Luvia.jpg"><img src="PenxiiCollection/Luvia.jpg" alt="Astraea" loading="lazy" decoding="async"></a>
+            <div class="image-title">Astraea <span class="like-btn" data-id="5">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Fireflies filling the darkness in my mindscape">
+            <a href="PenxiiCollection/A number of my simple happiness are fireflies filling the darkness in my mindscape..jpg"><img src="PenxiiCollection/A number of my simple happiness are fireflies filling the darkness in my mindscape..jpg" alt="Fireflies filling the darkness in my mindscape" loading="lazy" decoding="async"></a>
+            <div class="image-title">Fireflies filling... <span class="like-btn" data-id="6">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="A piece of Shinjuku memories">
+            <a href="PenxiiCollection/A piece of Shinjuku memories.jpg"><img src="PenxiiCollection/A piece of Shinjuku memories.jpg" alt="A piece of Shinjuku memories" loading="lazy" decoding="async"></a>
+            <div class="image-title">A piece of Shinjuku memories <span class="like-btn" data-id="7">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Alicepengu">
+            <a href="PenxiiCollection/Alicepengu.jpg"><img src="PenxiiCollection/Alicepengu.jpg" alt="Alicepengu" loading="lazy" decoding="async"></a>
+            <div class="image-title">Alicepengu <span class="like-btn" data-id="8">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Alice Drums">
+            <a href="PenxiiCollection/Aliceplay.jpg"><img src="PenxiiCollection/Aliceplay.jpg" alt="Alice Drums" loading="lazy" decoding="async"></a>
+            <div class="image-title">Alice Drums <span class="like-btn" data-id="9">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Gudako tea sipping and thinking about her choices">
+            <a href="PenxiiCollection/Gudako.png"><img src="PenxiiCollection/Gudako.png" alt="Gudako tea sipping and thinking about her choices" loading="lazy" decoding="async"></a>
+            <div class="image-title">Gudako tea... <span class="like-btn" data-id="10">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Arc">
+            <a href="PenxiiCollection/Arc.jpg"><img src="PenxiiCollection/Arc.jpg" alt="Arc" loading="lazy" decoding="async"></a>
+            <div class="image-title">Arc <span class="like-btn" data-id="11">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="BillyTheKid">
+            <a href="PenxiiCollection/BillyTheKid.jpg"><img src="PenxiiCollection/BillyTheKid.jpg" alt="BillyTheKid" loading="lazy" decoding="async"></a>
+            <div class="image-title">BillyTheKid <span class="like-btn" data-id="12">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Ciel">
+            <a href="PenxiiCollection/Cielbro check.jpg"><img src="PenxiiCollection/Cielbro check.jpg" alt="Ciel" loading="lazy" decoding="async"></a>
+            <div class="image-title">Ciel <span class="like-btn" data-id="13">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Gudako and her captured memories">
+            <a href="PenxiiCollection/Guda and Gang.jpg"><img src="PenxiiCollection/Guda and Gang.jpg" alt="Gudako and her captured memories" loading="lazy" decoding="async"></a>
+            <div class="image-title">Gudako and her... <span class="like-btn" data-id="14">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Gudamelt">
+            <a href="PenxiiCollection/Gudamelt.jpg"><img src="PenxiiCollection/Gudamelt.jpg" alt="Gudamelt" loading="lazy" decoding="async"></a>
+            <div class="image-title">Gudamelt <span class="like-btn" data-id="15">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Iなんです Kanade">
+            <a href="PenxiiCollection/Iなんです Kanade.jpg"><img src="PenxiiCollection/Iなんです Kanade.jpg" alt="Iなんです Kanade" loading="lazy" decoding="async"></a>
+            <div class="image-title">Iなんです Kanade <span class="like-btn" data-id="16">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Kanade [Pixel Art]">
+            <a href="PenxiiCollection/Kanade Pixel Art.png"><img src="PenxiiCollection/Kanade Pixel Art.png" alt="Kanade Pixel Art" loading="lazy" decoding="async"></a>
+            <div class="image-title">Kanade [Pixel Art] <span class="like-btn" data-id="17">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="knmf but mfy is a squid balloon">
+            <a href="PenxiiCollection/knmf but mfy is a squid balloon.jpg"><img src="PenxiiCollection/knmf but mfy is a squid balloon.jpg" alt="knmf but mfy is a squid balloon" loading="lazy" decoding="async"></a>
+            <div class="image-title">knmf but mfy... <span class="like-btn" data-id="18">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Kohaku">
+            <a href="PenxiiCollection/Kohaku.jpg"><img src="PenxiiCollection/Kohaku.jpg" alt="Kohaku" loading="lazy" decoding="async"></a>
+            <div class="image-title">Kohaku <span class="like-btn" data-id="19">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Koishi Komeiji">
+            <a href="PenxiiCollection/Koishi Komeiji.jpg"><img src="PenxiiCollection/Koishi Komeiji.jpg" alt="Koishi Komeiji" loading="lazy" decoding="async"></a>
+            <div class="image-title">Koishi Komeiji <span class="like-btn" data-id="20">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Len">
+            <a href="PenxiiCollection/Len1.jpg"><img src="PenxiiCollection/Len1.jpg" alt="Len" loading="lazy" decoding="async"></a>
+            <div class="image-title">Len <span class="like-btn" data-id="21">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Lily">
+            <a href="PenxiiCollection/Lily.jpg"><img src="PenxiiCollection/Lily.jpg" alt="Lily" loading="lazy" decoding="async"></a>
+            <div class="image-title">Lily <span class="like-btn" data-id="22">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Long lost Innocence">
+            <a href="PenxiiCollection/Long lost Innocence.jpg"><img src="PenxiiCollection/Long lost Innocence.jpg" alt="Long lost Innocence" loading="lazy" decoding="async"></a>
+            <div class="image-title">Long lost Innocence <span class="like-btn" data-id="23">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Lost Captain">
+            <a href="PenxiiCollection/Lost Captain.jpg"><img src="PenxiiCollection/Lost Captain.jpg" alt="Lost Captain" loading="lazy" decoding="async"></a>
+            <div class="image-title">Lost Captain <span class="like-btn" data-id="24">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Miku Day">
+            <a href="PenxiiCollection/Miku day.jpg"><img src="PenxiiCollection/Miku day.jpg" alt="Miku Day" loading="lazy" decoding="async"></a>
+            <div class="image-title">Miku Day <span class="like-btn" data-id="25">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Maidea">
+            <a href="PenxiiCollection/Maidea.jpg"><img src="PenxiiCollection/Maidea.jpg" alt="Maidea" loading="lazy" decoding="async"></a>
+            <div class="image-title">Maidea <span class="like-btn" data-id="26">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Merem Solomon from Tsukihime">
+            <a href="PenxiiCollection/Merem Solomon from Tsukihime.jpg"><img src="PenxiiCollection/Merem Solomon from Tsukihime.jpg" alt="Merem Solomon from Tsukihime" loading="lazy" decoding="async"></a>
+            <div class="image-title">Merem Solomon <span class="like-btn" data-id="27">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="どうか安寧な記憶を">
+            <a href="PenxiiCollection/どうか安寧な記憶を.jpg"><img src="PenxiiCollection/どうか安寧な記憶を.jpg" alt="どうか安寧な記憶を" loading="lazy" decoding="async"></a>
+            <div class="image-title">どうか安寧な記憶を <span class="like-btn" data-id="28">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="バグ">
+            <a href="PenxiiCollection/バグ.jpg"><img src="PenxiiCollection/バグ.jpg" alt="バグ" loading="lazy" decoding="async"></a>
+            <div class="image-title">バグ <span class="like-btn" data-id="29">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="SonoG and Gang">
+            <a href="PenxiiCollection/SonoG and Gang.jpg"><img src="PenxiiCollection/SonoG and Gang.jpg" alt="SonoG and Gang" loading="lazy" decoding="async"></a>
+            <div class="image-title">SonoG and Gang <span class="like-btn" data-id="30">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Van Gogh">
+            <a href="PenxiiCollection/Van Gogh.jpg"><img src="PenxiiCollection/Van Gogh.jpg" alt="Van Gogh" loading="lazy" decoding="async"></a>
+            <div class="image-title">Van Gogh <span class="like-btn" data-id="31">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Something something I drew in ms paint before for my late friend">
+            <a href="PenxiiCollection/Something something I drew in ms paint before for my late friend...jpg"><img src="PenxiiCollection/Something something I drew in ms paint before for my late friend...jpg" alt="Something something I drew in ms paint before for my late friend" loading="lazy" decoding="async"></a>
+            <div class="image-title">Ms paint friend... <span class="like-btn" data-id="32">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Smolberon">
+            <a href="PenxiiCollection/Smolberon.jpg"><img src="PenxiiCollection/Smolberon.jpg" alt="Smolberon" loading="lazy" decoding="async"></a>
+            <div class="image-title">Smolberon <span class="like-btn" data-id="33">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Sion Bunny">
+            <a href="PenxiiCollection/SionBunny.jpg"><img src="PenxiiCollection/SionBunny.jpg" alt="Sion Bunny" loading="lazy" decoding="async"></a>
+            <div class="image-title">Sion Bunny <span class="like-btn" data-id="34">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Sunflowers">
+            <a href="PenxiiCollection/Sf.jpg"><img src="PenxiiCollection/Sf.jpg" alt="Sunflowers" loading="lazy" decoding="async"></a>
+            <div class="image-title">Sunflowers <span class="like-btn" data-id="35">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Alice New Years">
+            <a href="PenxiiCollection/AliceNewYears.jpg"><img src="PenxiiCollection/AliceNewYears.jpg" alt="Alice New Years" loading="lazy" decoding="async"></a>
+            <div class="image-title">Alice New Years <span class="like-btn" data-id="36">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Alice In Pengu">
+            <a href="PenxiiCollection/AliceUnfzed.jpg"><img src="PenxiiCollection/AliceUnfzed.jpg" alt="Alice In Pengu" loading="lazy" decoding="async"></a>
+            <div class="image-title">Alice In Pengu <span class="like-btn" data-id="37">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Charlie Valentine">
+            <a href="PenxiiCollection/CharlieValentine.jpg"><img src="PenxiiCollection/CharlieValentine.jpg" alt="Charlie Valentine" loading="lazy" decoding="async"></a>
+            <div class="image-title">Charlie Valentine <span class="like-btn" data-id="38">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Kohaku Broomfies">
+            <a href="PenxiiCollection/KohakuBroom.jpg"><img src="PenxiiCollection/KohakuBroom.jpg" alt="Kohaku Broomfies" loading="lazy" decoding="async"></a>
+            <div class="image-title">Kohaku Broomfies <span class="like-btn" data-id="39">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Lanterns">
+            <a href="PenxiiCollection/Laterns.jpg"><img src="PenxiiCollection/Laterns.jpg" alt="Lanterns" loading="lazy" decoding="async"></a>
+            <div class="image-title">Lanterns <span class="like-btn" data-id="40">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="2 Sides">
+            <a href="PenxiiCollection/Len2sides.png"><img src="PenxiiCollection/Len2sides.png" alt="2 Sides" loading="lazy" decoding="async"></a>
+            <div class="image-title">2 Sides <span class="like-btn" data-id="41">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Miku Disturbance">
+            <a href="PenxiiCollection/Mikudisturbance.png"><img src="PenxiiCollection/Mikudisturbance.png" alt="Miku Disturbance" loading="lazy" decoding="async"></a>
+            <div class="image-title">Miku Disturbance <span class="like-btn" data-id="42">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Misodea">
+            <a href="PenxiiCollection/Misodea.jpg"><img src="PenxiiCollection/Misodea.jpg" alt="Misodea" loading="lazy" decoding="async"></a>
+            <div class="image-title">Misodea <span class="like-btn" data-id="43">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Nemo Capitain">
+            <a href="PenxiiCollection/NemoCapitan.jpg"><img src="PenxiiCollection/NemoCapitan.jpg" alt="Nemo Capitain" loading="lazy" decoding="async"></a>
+            <div class="image-title">Nemo Capitain <span class="like-btn" data-id="44">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Nemo On Ball">
+            <a href="PenxiiCollection/NemoOnBall.jpg"><img src="PenxiiCollection/NemoOnBall.jpg" alt="Nemo On Ball" loading="lazy" decoding="async"></a>
+            <div class="image-title">Nemo On Ball <span class="like-btn" data-id="45">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Noah">
+            <a href="PenxiiCollection/Noah.jpg"><img src="PenxiiCollection/Noah.jpg" alt="Noah" loading="lazy" decoding="async"></a>
+            <div class="image-title">Noah <span class="like-btn" data-id="46">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Obrella">
+            <a href="PenxiiCollection/Obrella.jpg"><img src="PenxiiCollection/Obrella.jpg" alt="Obrella" loading="lazy" decoding="async"></a>
+            <div class="image-title">Obrella <span class="like-btn" data-id="47">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Yakudo Trio">
+            <a href="PenxiiCollection/YakudoTrio.jpg"><img src="PenxiiCollection/YakudoTrio.jpg" alt="Yakudo Trio" loading="lazy" decoding="async"></a>
+            <div class="image-title">Yakudo Trio <span class="like-btn" data-id="48">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Mischievous bug with sunflower">
+            <a href="PenxiiCollection/Sunfberon.jpg"><img src="PenxiiCollection/Sunfberon.jpg" alt="Mischievous bug with sunflower" loading="lazy" decoding="async"></a>
+            <div class="image-title">Mischievous bug with sunflower <span class="like-btn" data-id="49">🤍</span></div>
+        </div>
+        <div class="image-card" data-title="Herself Falling">
+            <a href="PenxiiCollection/Penxii.jpg"><img src="PenxiiCollection/Penxii.jpg" alt="Herself Falling" loading="lazy" decoding="async"></a>
+            <div class="image-title">Herself Falling <span class="like-btn" data-id="50">🤍</span></div>
+        </div>
+    </div>
+
+    <!-- Lightbox with navigation -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">✕</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">◀</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">▶</button>
+        <img src="" alt="" id="lightboxImg">
+        <div class="lightbox-title" id="lightboxTitle"></div>
+        <button class="lightbox-share" id="lightboxShare">📋 Copy link</button>
+    </div>
+
+    <!-- Scroll to top -->
+    <div class="scroll-top" id="scrollTopBtn" title="Back to top">↑</div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Confetti canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <footer>
+        <p>🎨 Author: Penxii &nbsp;|&nbsp; Page by: Aizan</p>
+        <p>&copy; 2026 copyright reserved &nbsp;•&nbsp; <a href="https://x.com/Penxii_" target="_blank" rel="noopener">X (Twitter) Page</a></p>
+    </footer>
+
+    <script>
+        (function() {
+            // ========== DARK MODE ==========
+            const body = document.body;
+            const toggleBtn = document.getElementById('themeToggle');
+            const savedTheme = localStorage.getItem('penxii-theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-mode');
+                toggleBtn.textContent = '☀️';
+            } else {
+                toggleBtn.textContent = '🌙';
+            }
+            toggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                const isDark = body.classList.contains('dark-mode');
+                toggleBtn.textContent = isDark ? '☀️' : '🌙';
+                localStorage.setItem('penxii-theme', isDark ? 'dark' : 'light');
+            });
+
+            // ========== IMAGE PROTECTION ==========
+            document.querySelectorAll('.image-card img').forEach(img => {
+                img.addEventListener('contextmenu', e => e.preventDefault());
+            });
+            document.addEventListener('dragstart', e => {
+                if (e.target.tagName === 'IMG') e.preventDefault();
+            });
+            document.addEventListener('keydown', e => {
+                if (e.ctrlKey || e.metaKey) {
+                    if (['s','S','u','U'].includes(e.key)) {
+                        e.preventDefault();
+                        return false;
+                    }
+                }
+                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // ========== GALLERY DATA & DOM ==========
+            const gallery = document.getElementById('gallery');
+            const counterEl = document.getElementById('counter');
+            const allCards = Array.from(document.querySelectorAll('.image-card'));
+            // Assign original index for default sort
+            allCards.forEach((card, i) => card.setAttribute('data-original-index', i));
+
+            // Staggered animation delay
+            allCards.forEach((card, i) => {
+                card.style.animationDelay = `${i * 0.03}s`;
+            });
+
+            // ========== LIKE SYSTEM ==========
+            const likeStorageKey = 'penxii-likes';
+            let likedSet = new Set(JSON.parse(localStorage.getItem(likeStorageKey) || '[]'));
+
+            function updateLikeButtons() {
+                document.querySelectorAll('.like-btn').forEach(btn => {
+                    const id = btn.getAttribute('data-id');
+                    if (likedSet.has(id)) {
+                        btn.classList.add('liked');
+                        btn.textContent = '❤️';
+                    } else {
+                        btn.classList.remove('liked');
+                        btn.textContent = '🤍';
+                    }
+                });
+            }
+            function saveLikes() {
+                localStorage.setItem(likeStorageKey, JSON.stringify([...likedSet]));
+                updateLikeButtons();
+            }
+            // Event delegation for like buttons
+            gallery.addEventListener('click', (e) => {
+                const btn = e.target.closest('.like-btn');
+                if (!btn) return;
+                e.stopPropagation();
+                e.preventDefault();
+                const id = btn.getAttribute('data-id');
+                if (likedSet.has(id)) {
+                    likedSet.delete(id);
+                } else {
+                    likedSet.add(id);
+                    // trigger confetti
+                    launchConfetti();
+                }
+                saveLikes();
+            });
+            updateLikeButtons();
+
+            // ========== SIMPLE CONFETTI ==========
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            let confettiParticles = [];
+            let confettiAnimationId;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            function launchConfetti() {
+                const colors = ['#ff6b6b', '#ffd93d', '#6bcb77', '#4d96ff', '#ff8e9e', '#a66cff'];
+                for (let i = 0; i < 60; i++) {
+                    confettiParticles.push({
+                        x: Math.random() * canvas.width,
+                        y: -20 - Math.random() * 100,
+                        w: Math.random() * 8 + 4,
+                        h: Math.random() * 4 + 2,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        speedX: (Math.random() - 0.5) * 4,
+                        speedY: Math.random() * 3 + 2,
+                        rotation: Math.random() * Math.PI * 2,
+                        rotationSpeed: (Math.random() - 0.5) * 0.1,
+                    });
+                }
+                if (!confettiAnimationId) {
+                    animateConfetti();
+                }
+            }
+
+            function animateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                confettiParticles = confettiParticles.filter(p => p.y < canvas.height + 50);
+                confettiParticles.forEach(p => {
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                    ctx.restore();
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+                    p.rotation += p.rotationSpeed;
+                });
+                if (confettiParticles.length > 0) {
+                    confettiAnimationId = requestAnimationFrame(animateConfetti);
+                } else {
+                    confettiAnimationId = null;
+                }
+            }
+
+            // ========== LIGHTBOX & NAVIGATION ==========
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxTitle = document.getElementById('lightboxTitle');
+            const lightboxClose = document.getElementById('lightboxClose');
+            const prevBtn = document.getElementById('lightboxPrev');
+            const nextBtn = document.getElementById('lightboxNext');
+            const shareBtn = document.getElementById('lightboxShare');
+            const toast = document.getElementById('toast');
+
+            let currentLightboxIndex = -1;
+            let currentVisibleCards = []; // will hold currently visible (after search/sort/filter)
+
+            function getVisibleCardList() {
+                return allCards.filter(card => card.style.display !== 'none');
+            }
+
+            function openLightboxAtIndex(index) {
+                const visible = getVisibleCardList();
+                if (visible.length === 0) return;
+                currentVisibleCards = visible;
+                if (index < 0) index = 0;
+                if (index >= visible.length) index = visible.length - 1;
+                currentLightboxIndex = index;
+                const card = visible[index];
+                const link = card.querySelector('a');
+                const title = card.getAttribute('data-title') || card.querySelector('.image-title')?.textContent.replace(/[❤🤍]/g, '').trim();
+                if (link) {
+                    lightboxImg.src = link.href;
+                    lightboxImg.alt = title;
+                    lightboxTitle.textContent = title;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+                // Update button states
+                prevBtn.style.display = visible.length > 1 ? 'flex' : 'none';
+                nextBtn.style.display = visible.length > 1 ? 'flex' : 'none';
+            }
+
+            function showNext() {
+                const visible = getVisibleCardList();
+                if (visible.length === 0) return;
+                let newIndex = currentLightboxIndex + 1;
+                if (newIndex >= visible.length) newIndex = 0;
+                openLightboxAtIndex(newIndex);
+            }
+            function showPrev() {
+                const visible = getVisibleCardList();
+                if (visible.length === 0) return;
+                let newIndex = currentLightboxIndex - 1;
+                if (newIndex < 0) newIndex = visible.length - 1;
+                openLightboxAtIndex(newIndex);
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+                lightboxImg.src = '';
+                currentLightboxIndex = -1;
+            }
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showPrev();
+            });
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showNext();
+            });
+
+            // Keyboard arrows
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        showPrev();
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        showNext();
+                    } else if (e.key === 'Escape') {
+                        closeLightbox();
+                    }
+                }
+            });
+
+            // Share button
+            shareBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const url = lightboxImg.src;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(url).then(() => {
+                        showToast('📋 Image link copied!');
+                    });
+                } else {
+                    // fallback
+                    const textarea = document.createElement('textarea');
+                    textarea.value = url;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    showToast('📋 Image link copied!');
+                }
+            });
+
+            function showToast(msg) {
+                toast.textContent = msg;
+                toast.classList.add('show');
+                clearTimeout(toast._timeout);
+                toast._timeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2000);
+            }
+
+            // Open lightbox on card click (except like button)
+            gallery.addEventListener('click', (e) => {
+                if (e.target.closest('.like-btn')) return;
+                const card = e.target.closest('.image-card');
+                if (!card) return;
+                const visible = getVisibleCardList();
+                const index = visible.indexOf(card);
+                if (index !== -1) {
+                    openLightboxAtIndex(index);
+                }
+            });
+
+            // ========== RANDOM BUTTON ==========
+            document.getElementById('randomBtn').addEventListener('click', () => {
+                const visible = getVisibleCardList();
+                if (visible.length === 0) return;
+                const randomIndex = Math.floor(Math.random() * visible.length);
+                openLightboxAtIndex(randomIndex);
+            });
+
+            // ========== SEARCH, SORT & LIKED FILTER ==========
+            const searchInput = document.getElementById('searchInput');
+            const sortSelect = document.getElementById('sortSelect');
+            const toggleFavsBtn = document.getElementById('toggleFavsBtn');
+            let showOnlyLiked = false;
+
+            function filterAndSort() {
+                const query = searchInput.value.toLowerCase().trim();
+                const sort = sortSelect.value;
+
+                allCards.forEach(card => {
+                    const title = (card.getAttribute('data-title') || '').toLowerCase();
+                    const id = card.querySelector('.like-btn')?.getAttribute('data-id');
+                    const matchesSearch = title.includes(query);
+                    const matchesLiked = !showOnlyLiked || (id && likedSet.has(id));
+                    card.style.display = (matchesSearch && matchesLiked) ? '' : 'none';
+                });
+
+                const visible = allCards.filter(c => c.style.display !== 'none');
+                const hidden = allCards.filter(c => c.style.display === 'none');
+
+                if (sort === 'az') {
+                    visible.sort((a,b) => a.getAttribute('data-title').localeCompare(b.getAttribute('data-title')));
+                } else if (sort === 'za') {
+                    visible.sort((a,b) => b.getAttribute('data-title').localeCompare(a.getAttribute('data-title')));
+                } else {
+                    visible.sort((a,b) => (parseInt(a.getAttribute('data-original-index')) - parseInt(b.getAttribute('data-original-index'))));
+                }
+
+                // Re-append to gallery
+                const frag = document.createDocumentFragment();
+                visible.forEach(c => frag.appendChild(c));
+                hidden.forEach(c => frag.appendChild(c));
+                gallery.appendChild(frag);
+
+                // Update counter
+                counterEl.textContent = `Showing ${visible.length} of ${allCards.length}`;
+            }
+
+            searchInput.addEventListener('input', filterAndSort);
+            sortSelect.addEventListener('change', filterAndSort);
+
+            toggleFavsBtn.addEventListener('click', () => {
+                showOnlyLiked = !showOnlyLiked;
+                toggleFavsBtn.style.background = showOnlyLiked ? 'var(--accent)' : '';
+                toggleFavsBtn.style.color = showOnlyLiked ? 'white' : '';
+                filterAndSort();
+            });
+
+            // Initial filter to set counter
+            filterAndSort();
+
+            // ========== SCROLL TO TOP ==========
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            window.addEventListener('scroll', () => {
+                scrollBtn.classList.toggle('visible', window.scrollY > 500);
+            });
+            scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        })();
+    </script>
+</body>
+</html>
